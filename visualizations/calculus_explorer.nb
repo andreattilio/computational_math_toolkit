@@ -1,0 +1,1214 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     50729,       1206]
+NotebookOptionsPosition[     48174,       1151]
+NotebookOutlinePosition[     48619,       1169]
+CellTagsIndexPosition[     48576,       1166]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Fundamental Theorem of Calculus", "Section",
+ CellChangeTimes->{{3.951214737026823*^9, 
+  3.9512147438527718`*^9}},ExpressionUUID->"113ddbf7-c8b2-4d0e-a0fb-\
+8c810c00b31f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Define", " ", "a", " ", "function", " ", "f", 
+    RowBox[{"(", "x", ")"}], " ", "and", " ", "its", " ", "antiderivative", " ",
+     "F", 
+    RowBox[{"(", "x", ")"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], ":=", 
+    RowBox[{"x", "^", "2"}]}], "\n", 
+   RowBox[{
+    RowBox[{"F", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "/", "3"}]}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Create", " ", "a", " ", "visual", " ", "demonstration", " ", "of", " ", 
+     "the", " ", "Fundamental", " ", "Theorem", " ", "of", " ", "Calculus"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"integralValue", ",", "antiderivativeDifference"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"integralValue", "=", 
+         RowBox[{"NIntegrate", "[", 
+          RowBox[{
+           RowBox[{"f", "[", "t", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "a", ",", "b"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"antiderivativeDifference", "=", 
+         RowBox[{
+          RowBox[{"F", "[", "b", "]"}], "-", 
+          RowBox[{"F", "[", "a", "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"f", "[", "x_", "]"}], ":=", 
+         RowBox[{"x", "^", "2"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"F", "[", "x_", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"x", "^", "3"}], "/", "3"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Fundamental Theorem of Calculus Visualization\>\"", ",",
+              "Bold", ",", "16"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<\[Integral][a to b] x\.b2 dx = (b\.b3/3) - (a\.b3/3)\
+\>\"", ",", "14"}], "]"}], ",", 
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"(*", 
+              RowBox[{"Left", " ", 
+               RowBox[{"plot", ":", 
+                RowBox[{
+                "The", " ", "function", " ", "and", " ", "the", " ", "area", " ",
+                  "under", " ", "it"}]}]}], "*)"}], 
+             RowBox[{
+              RowBox[{"Plot", "[", 
+               RowBox[{
+                RowBox[{"f", "[", "x", "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"x", ",", "0", ",", 
+                  RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "4"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "16"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"PlotLabel", "->", "\"\<f(x) = x\.b2\>\""}], ",", 
+                RowBox[{"Epilog", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"ColorData", "[", "\"\<Rainbow\>\"", "]"}], "[", 
+                    "0.7", "]"}], ",", 
+                   RowBox[{"Opacity", "[", "0.3", "]"}], ",", 
+                   RowBox[{"Polygon", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}]}], "}"}], "~", 
+                    "Join", "~", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", 
+                    RowBox[{"f", "[", "x", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"x", ",", "a", ",", "b", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"b", "-", "a"}], ")"}], "/", "50"}]}], "}"}]}], 
+                    "]"}], "~", "Join", "~", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"f", "[", "b", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", "0"}], "}"}]}], "}"}]}], "]"}], ",", 
+                   "Red", ",", "Thick", ",", 
+                   RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}]}], "}"}], "]"}], ",",
+                    "Blue", ",", "Thick", ",", 
+                   RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"f", "[", "b", "]"}]}], "}"}]}], "}"}], "]"}]}], 
+                  "}"}]}], ",", 
+                RowBox[{"ImageSize", "->", "300"}]}], "]"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{"Right", " ", 
+                RowBox[{"plot", ":", 
+                 RowBox[{
+                 "The", " ", "antiderivative", " ", "and", " ", "the", " ", 
+                  "difference"}]}]}], "*)"}], 
+              RowBox[{"Plot", "[", 
+               RowBox[{
+                RowBox[{"F", "[", "x", "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"x", ",", "0", ",", 
+                  RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "4"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "22"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"PlotLabel", "->", "\"\<F(x) = x\.b3/3\>\""}], ",", 
+                RowBox[{"Epilog", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"Red", ",", 
+                   RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+                   RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"F", "[", "a", "]"}]}], "}"}], "]"}], ",", "Blue",
+                    ",", 
+                   RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+                   RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"F", "[", "b", "]"}]}], "}"}], "]"}], ",", 
+                   RowBox[{"Darker", "[", "Green", "]"}], ",", "Dashed", ",", 
+                   "Thick", ",", 
+                   RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"F", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"F", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"b", ",", 
+                    RowBox[{"F", "[", "b", "]"}]}], "}"}]}], "}"}], "]"}]}], 
+                  "}"}]}], ",", 
+                RowBox[{"ImageSize", "->", "300"}]}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Display", " ", "numerical", " ", "results"}], "*)"}], 
+           RowBox[{"Style", "[", 
+            RowBox[{
+             RowBox[{"Grid", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Bounds\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<a = \>\"", ",", "a"}], "}"}], "]"}], ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<b = \>\"", ",", "b"}], "}"}], "]"}]}], "}"}],
+                  ",", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Values\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<F(a) = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"F", "[", "a", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "4"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<F(b) = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"F", "[", "b", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "4"}], "}"}]}], "]"}]}], "}"}], "]"}]}],
+                   "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Results\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    
+                    RowBox[{"\"\<\[Integral][\>\"", ",", "a", 
+                    ",", "\"\< to \>\"", ",", "b", ",", "\"\<] f(x) dx = \>\"",
+                     ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"integralValue", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "4"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<F(b) - F(a) = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"antiderivativeDifference", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "4"}], "}"}]}], "]"}]}], "}"}], "]"}]}],
+                   "}"}]}], "}"}], ",", 
+               RowBox[{"Alignment", "->", "Left"}], ",", 
+               RowBox[{"Dividers", "->", "All"}]}], "]"}], ",", "14"}], "]"}],
+            ",", 
+           RowBox[{"(*", 
+            RowBox[{"Educational", " ", "description"}], "*)"}], 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<The Fundamental Theorem of Calculus states that if F \
+is an antiderivative of f, then the definite integral of f from a to b equals \
+F(b) - F(a). This visualization shows:\>\"", ",", "12"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<\[Bullet] The blue shaded area represents the \
+definite integral of f(x) from a to b.\>\"", ",", "12"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<\[Bullet] The green dashed line shows the difference \
+F(b) - F(a) on the antiderivative graph.\>\"", ",", "12"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<\[Bullet] Try moving the sliders to see how the area \
+and the difference change together.\>\"", ",", "12"}], "]"}]}], "}"}], 
+         "]"}]}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a", ",", "0.5", ",", "\"\<Lower bound (a)\>\""}], "}"}], ",",
+        "0", ",", "4", ",", "0.1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"b", ",", "3", ",", "\"\<Upper bound (b)\>\""}], "}"}], ",", 
+       "0", ",", "4", ",", "0.1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "->", "Bottom"}]}], "]"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "To", " ", "deploy", " ", "this", " ", "to", " ", "Wolfram", " ", 
+     "Cloud"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"deployedFTC", "=", 
+     RowBox[{"CloudDeploy", "[", 
+      RowBox[{"%", ",", "\"\<FundamentalTheoremOfCalculus\>\"", ",", 
+       RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}], 
+    "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.951207691856452*^9, 3.951207691859091*^9}, {
+  3.951208629347192*^9, 3.951208672211911*^9}, {3.951214553882039*^9, 
+  3.9512145636502934`*^9}, {3.9788529069243402`*^9, 3.978852908725178*^9}},
+ CellLabel->
+  "In[757]:=",ExpressionUUID->"f9b3976e-ceed-459e-b35a-0185af6da951"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 1., $CellContext`b$$ = 3, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], 0.5, "Lower bound (a)"}, 0, 4, 0.1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`b$$], 3, "Upper bound (b)"}, 0, 4, 0.1, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    1273.4299999999998`, {300.474340011754, 309.072240402379}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 0.5, $CellContext`b$$ = 3}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`integralValue$, \
+$CellContext`antiderivativeDifference$}, $CellContext`integralValue$ = 
+         NIntegrate[
+           $CellContext`f[$CellContext`t], {$CellContext`t, $CellContext`a$$, \
+$CellContext`b$$}]; $CellContext`antiderivativeDifference$ = \
+$CellContext`F[$CellContext`b$$] - $CellContext`F[$CellContext`a$$]; \
+$CellContext`f[
+           Pattern[$CellContext`x, 
+            Blank[]]] := $CellContext`x^2; $CellContext`F[
+           Pattern[$CellContext`x, 
+            Blank[]]] := $CellContext`x^3/3; Column[{
+           Style["Fundamental Theorem of Calculus Visualization", Bold, 16], 
+           Style["\[Integral][a to b] x\.b2 dx = (b\.b3/3) - (a\.b3/3)", 14], 
+           
+           Row[{
+             Plot[
+              $CellContext`f[$CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+              PlotRange -> {{0, 4}, {0, 16}}, PlotLabel -> "f(x) = x\.b2", 
+              Epilog -> {
+                ColorData["Rainbow"][0.7], 
+                Opacity[0.3], 
+                Polygon[
+                 Join[
+                  Join[{{$CellContext`a$$, 0}, {$CellContext`a$$, 
+                    $CellContext`f[$CellContext`a$$]}}, 
+                   Table[{$CellContext`x, 
+                    $CellContext`f[$CellContext`x]}, {$CellContext`x, \
+$CellContext`a$$, $CellContext`b$$, ($CellContext`b$$ - $CellContext`a$$)/
+                    50}]], {{$CellContext`b$$, 
+                    $CellContext`f[$CellContext`b$$]}, {$CellContext`b$$, 
+                    0}}]], Red, Thick, 
+                Line[{{$CellContext`a$$, 0}, {$CellContext`a$$, 
+                   $CellContext`f[$CellContext`a$$]}}], Blue, Thick, 
+                Line[{{$CellContext`b$$, 0}, {$CellContext`b$$, 
+                   $CellContext`f[$CellContext`b$$]}}]}, ImageSize -> 300], 
+             Plot[
+              $CellContext`F[$CellContext`x], {$CellContext`x, 0, 2 Pi}, 
+              PlotRange -> {{0, 4}, {0, 22}}, PlotLabel -> "F(x) = x\.b3/3", 
+              Epilog -> {Red, 
+                PointSize[0.02], 
+                Point[{$CellContext`a$$, 
+                  $CellContext`F[$CellContext`a$$]}], Blue, 
+                PointSize[0.02], 
+                Point[{$CellContext`b$$, 
+                  $CellContext`F[$CellContext`b$$]}], 
+                Darker[Green], Dashed, Thick, 
+                Line[{{$CellContext`a$$, 
+                   $CellContext`F[$CellContext`a$$]}, {$CellContext`b$$, 
+                   $CellContext`F[$CellContext`a$$]}, {$CellContext`b$$, 
+                   $CellContext`F[$CellContext`b$$]}}]}, ImageSize -> 300]}], 
+           
+           Style[
+            Grid[{{"Bounds", 
+               Row[{"a = ", $CellContext`a$$}], 
+               Row[{"b = ", $CellContext`b$$}]}, {"Values", 
+               Row[{"F(a) = ", 
+                 NumberForm[
+                  $CellContext`F[$CellContext`a$$], {5, 4}]}], 
+               Row[{"F(b) = ", 
+                 NumberForm[
+                  $CellContext`F[$CellContext`b$$], {5, 4}]}]}, {"Results", 
+               
+               Row[{"\[Integral][", $CellContext`a$$, 
+                 " to ", $CellContext`b$$, "] f(x) dx = ", 
+                 NumberForm[$CellContext`integralValue$, {5, 4}]}], 
+               Row[{"F(b) - F(a) = ", 
+                 
+                 NumberForm[$CellContext`antiderivativeDifference$, {5, 
+                  4}]}]}}, Alignment -> Left, Dividers -> All], 14], 
+           Style[
+           "The Fundamental Theorem of Calculus states that if F is an \
+antiderivative of f, then the definite integral of f from a to b equals F(b) \
+- F(a). This visualization shows:", 12], 
+           Style[
+           "\[Bullet] The blue shaded area represents the definite integral \
+of f(x) from a to b.", 12], 
+           Style[
+           "\[Bullet] The green dashed line shows the difference F(b) - F(a) \
+on the antiderivative graph.", 12], 
+           Style[
+           "\[Bullet] Try moving the sliders to see how the area and the \
+difference change together.", 12]}]], 
+      "Specifications" :> {{{$CellContext`a$$, 0.5, "Lower bound (a)"}, 0, 4, 
+         0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`b$$, 3, "Upper bound (b)"}, 0, 4, 0.1, 
+         Appearance -> "Labeled"}}, "Options" :> {ControlPlacement -> Bottom},
+       "DefaultOptions" :> {}],
+     ImageSizeCache->{1343.08, {392.1799781343126, 400.7778785249376}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.951207692957081*^9, {3.951208651596883*^9, 3.95120867491805*^9}, {
+   3.9512145576855593`*^9, 3.951214565113768*^9}, 3.952401638188282*^9, 
+   3.9788529097260437`*^9},
+ CellLabel->
+  "Out[759]=",ExpressionUUID->"632d923f-5445-4966-b2df-c04134aaa148"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"DeleteObject", "[", 
+  RowBox[{
+  "CloudObject", 
+   "[", "\"\<https://www.wolframcloud.com/obj/3b2f4345-03e0-42ab-ae14-\
+57f0e4e3ebc7\>\"", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.952402651732009*^9, 3.952402684040517*^9}},
+ CellLabel->"In[75]:=",ExpressionUUID->"f746e0d8-838b-465f-88fa-2ea8c90aab02"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", "2.9", ")"}], "^", "2"}], ")"}], "*", "0.1"}]], "Input",
+ CellChangeTimes->{{3.95120773171362*^9, 3.951207750651*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"29a82c06-71d2-498a-a39c-fb8e175ffa5b"],
+
+Cell[BoxData["0.8410000000000001`"], "Output",
+ CellChangeTimes->{3.951207751456359*^9},
+ CellLabel->"Out[55]=",ExpressionUUID->"19f27d4b-693d-4560-bf16-735879474551"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Equation of the Tangent Line", "Section",
+ CellChangeTimes->{{3.951214761401116*^9, 
+  3.95121477420957*^9}},ExpressionUUID->"e64baa38-fdd7-4bf7-97d2-\
+d4db44546d96"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Define", " ", "the", " ", "function", " ", "and", " ", "its", " ", 
+    "derivative", " ", "using", " ", "explicit", " ", "function", " ", 
+    "definitions"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"f", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"x", "^", "3"}], "-", 
+     RowBox[{"2", " ", 
+      RowBox[{"x", "^", "2"}]}], "+", "2"}]}], "\n", 
+   RowBox[{
+    RowBox[{"fPrime", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"3", 
+      RowBox[{"x", "^", "2"}]}], "-", 
+     RowBox[{"4", "x"}]}]}], 
+   RowBox[{"(*", 
+    RowBox[{
+    "Using", " ", "symbolic", " ", "differentiation", " ", "instead", " ", 
+     "of", " ", "manual", " ", "definition"}], "*)"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Define", " ", "the", " ", "tangent", " ", "line", " ", "equation", " ", 
+     "at", " ", "point", " ", "a"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"tangentLine", "[", 
+      RowBox[{"x_", ",", "a_"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fPrime", "[", "a", "]"}], "*", "x"}], "+", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"f", "[", "a", "]"}], "-", 
+        RowBox[{
+         RowBox[{"fPrime", "[", "a", "]"}], "*", "a"}]}], ")"}]}]}], ";"}], 
+   "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Create", " ", "the", " ", "interactive", " ", "visualization"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "derValue", ",", "tangentLineEq", ",", "secantLineEq", ",", "h"}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"f", "[", "x_", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"x", "^", "3"}], "-", 
+          RowBox[{"2", " ", 
+           RowBox[{"x", "^", "2"}]}], "+", "2"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"fPrime", "[", "x_", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"3", 
+           RowBox[{"x", "^", "2"}]}], "-", 
+          RowBox[{"4", "x"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"tangentLine", "[", 
+            RowBox[{"x_", ",", "a_"}], "]"}], ":=", 
+           RowBox[{
+            RowBox[{"f", "[", "a", "]"}], "+", 
+            RowBox[{
+             RowBox[{"fPrime", "[", "a", "]"}], " ", 
+             RowBox[{"(", 
+              RowBox[{"x", "-", "a"}], ")"}]}]}]}], ";"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"tangentLine", "[", 
+          RowBox[{"x_", ",", "a_"}], "]"}], ":=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"fPrime", "[", "a", "]"}], "*", "x"}], "+", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"f", "[", "a", "]"}], "-", 
+            RowBox[{
+             RowBox[{"fPrime", "[", "a", "]"}], "*", "a"}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"derValue", "=", 
+         RowBox[{"fPrime", "[", "a", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"tangentLineEq", "=", 
+         RowBox[{"tangentLine", "[", 
+          RowBox[{"x", ",", "a"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"h", "=", "0.5"}], ";", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Default", " ", "value", " ", "for", " ", "secant", " ", "line"}], 
+         "*)"}], 
+        RowBox[{"secantLineEq", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"f", "[", 
+               RowBox[{"a", "+", "h"}], "]"}], "-", 
+              RowBox[{"f", "[", "a", "]"}]}], ")"}], "/", "h"}], "*", 
+           RowBox[{"(", 
+            RowBox[{"x", "-", "a"}], ")"}]}], "+", 
+          RowBox[{"f", "[", "a", "]"}]}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            
+            RowBox[{"\"\<Derivative as the Slope of the Tangent Line\>\"", ",",
+              "Bold", ",", "16"}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{
+            "Main", " ", "plot", " ", "showing", " ", "function", " ", "and", 
+             " ", "tangent", " ", "line"}], "*)"}], 
+           RowBox[{"Plot", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"f", "[", "x", "]"}], ",", "tangentLineEq", ",", 
+               RowBox[{"If", "[", 
+                RowBox[{"showSecant", ",", "secantLineEq", ",", "None"}], 
+                "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", 
+               RowBox[{"-", "1"}], ",", "4"}], "}"}], ",", 
+             RowBox[{"PlotRange", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], ",", "4"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "2"}], ",", "15"}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"PlotStyle", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Darker", "[", 
+                 RowBox[{"Blue", ",", "0.2"}], "]"}], ",", "Red", ",", 
+                "Dashed"}], "}"}]}], ",", 
+             RowBox[{"Epilog", "->", 
+              RowBox[{"{", 
+               RowBox[{"(*", 
+                RowBox[{
+                "Mark", " ", "the", " ", "point", " ", "of", " ", 
+                 "tangency"}], "*)"}], 
+               RowBox[{
+                RowBox[{"PointSize", "[", "0.02", "]"}], ",", "Red", ",", 
+                RowBox[{"Point", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"a", ",", 
+                   RowBox[{"f", "[", "a", "]"}]}], "}"}], "]"}], ",", 
+                RowBox[{"(*", 
+                 RowBox[{
+                 "Highlight", " ", "the", " ", "slope", " ", "triangle", " ", 
+                  "if", " ", "enabled"}], "*)"}], 
+                RowBox[{"If", "[", 
+                 RowBox[{"showSlopeTriangle", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Darker", "[", 
+                    RowBox[{"Green", ",", "0.3"}], "]"}], ",", 
+                    RowBox[{"Thickness", "[", "0.004", "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "1"}], ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "1"}], ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "1"}], ",", 
+                    RowBox[{
+                    RowBox[{"f", "[", "a", "]"}], "+", "derValue"}]}], 
+                    "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "1"}], ",", 
+                    RowBox[{
+                    RowBox[{"f", "[", "a", "]"}], "+", "derValue"}]}], 
+                    "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{"Label", " ", "the", " ", "slope"}], "*)"}], 
+                    RowBox[{"Text", "[", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{
+                    RowBox[{"\"\<Slope = \>\"", "<>", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"derValue", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}], "]"}]}], ",", 
+                    "Bold", ",", "12", ",", 
+                    RowBox[{"Darker", "[", 
+                    RowBox[{"Green", ",", "0.5"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "0.5"}], ",", 
+                    RowBox[{
+                    RowBox[{"f", "[", "a", "]"}], "+", 
+                    RowBox[{"derValue", "/", "2"}], "+", "0.5"}]}], "}"}]}], 
+                    "]"}]}], "}"}], ",", 
+                  RowBox[{"{", "}"}]}], "]"}], ",", 
+                RowBox[{"(*", 
+                 RowBox[{
+                 "Show", " ", "secant", " ", "line", " ", "points", " ", "if",
+                   " ", "enabled"}], "*)"}], 
+                RowBox[{"If", "[", 
+                 RowBox[{"showSecant", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Orange", ",", 
+                    RowBox[{"PointSize", "[", "0.015", "]"}], ",", 
+                    RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "h"}], ",", 
+                    RowBox[{"f", "[", 
+                    RowBox[{"a", "+", "h"}], "]"}]}], "}"}], "]"}], ",", 
+                    "Dashed", ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"f", "[", "a", "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"a", "+", "h"}], ",", 
+                    RowBox[{"f", "[", 
+                    RowBox[{"a", "+", "h"}], "]"}]}], "}"}]}], "}"}], "]"}]}],
+                    "}"}], ",", 
+                  RowBox[{"{", "}"}]}], "]"}]}], "}"}]}], ",", 
+             RowBox[{"PlotLabels", "->", 
+              RowBox[{"{", 
+               
+               RowBox[{"\"\<f(x) = x\.b3 - 2x\.b2 + 2\>\"", 
+                ",", "\"\<Tangent Line\>\"", ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                 "showSecant", ",", "\"\<Secant Line\>\"", ",", "None"}], 
+                 "]"}]}], "}"}]}], ",", 
+             RowBox[{"ImageSize", "->", "500"}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Information", " ", "panel"}], "*)"}], 
+           RowBox[{"Panel", "[", 
+            RowBox[{
+             RowBox[{"Grid", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Point\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<x = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<f(\>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}], 
+                    ",", "\"\<) = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"f", "[", "a", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}]}],
+                   "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Derivative\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<f'(\>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}], 
+                    ",", "\"\<) = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"derValue", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], 
+                   ",", "\"\<\>\""}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Tangent Line Equation\>\"", ",", 
+                   RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<y = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"fPrime", "[", "a", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}], 
+                    ",", "\"\<(x - \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"a", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}], 
+                    ",", "\"\<) + \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"f", "[", "a", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"4", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], 
+                   ",", "\"\<\>\""}], "}"}]}], "}"}], ",", 
+               RowBox[{"Alignment", "->", "Left"}], ",", 
+               RowBox[{"Dividers", "->", "All"}]}], "]"}], ",", 
+             RowBox[{"ImageSize", "->", "500"}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{"Educational", " ", "description"}], "*)"}], 
+           RowBox[{"Panel", "[", 
+            RowBox[{
+             RowBox[{"Column", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"\"\<Explanation:\>\"", ",", "Bold", ",", "14"}], 
+                  "]"}], ",", "\"\<\[Bullet] The derivative of a function at \
+a point equals the slope of the tangent line at that point.\>\"", 
+                 ",", "\"\<\[Bullet] As you move the slider, observe how the \
+tangent line's inclination changes.\>\"", 
+                 ",", "\"\<\[Bullet] The slope triangle (when enabled) shows \
+rise/run = f'(a).\>\"", ",", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                  "showSecant", 
+                   ",", "\"\<\[Bullet] The secant line approaches the tangent \
+line as the distance between points decreases.\>\"", ",", "\"\<\>\""}], 
+                  "]"}]}], "}"}], ",", 
+               RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+             RowBox[{"ImageSize", "->", "500"}]}], "]"}]}], "}"}], "]"}]}]}], 
+      "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a", ",", "1", ",", "\"\<Point (x-value)\>\""}], "}"}], ",", 
+       RowBox[{"-", "0.5"}], ",", "3", ",", "0.1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "showSlopeTriangle", ",", "True", 
+         ",", "\"\<Show slope triangle\>\""}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"showSecant", ",", "False", ",", "\"\<Show secant line\>\""}],
+         "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "->", "Bottom"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "To", " ", "deploy", " ", "this", " ", "to", " ", "Wolfram", " ", 
+      "Cloud"}], ",", 
+     RowBox[{"uncomment", " ", "below"}]}], "*)"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"CloudDeploy", "[", 
+     RowBox[{"%", ",", "\"\<DerivativeAsTangentSlope\>\"", ",", 
+      RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}], 
+    "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.9512139403155947`*^9, 3.951213960555455*^9}, {
+   3.951213991611562*^9, 3.951214007446124*^9}, {3.951214399777521*^9, 
+   3.951214404113852*^9}, {3.951214993909746*^9, 3.951215016595661*^9}, {
+   3.970040112448781*^9, 3.970040128418497*^9}, {3.970040341796618*^9, 
+   3.970040411266082*^9}, {3.970040462996931*^9, 3.970040482063542*^9}, 
+   3.970040629250452*^9},
+ CellLabel->
+  "In[190]:=",ExpressionUUID->"1cfea0df-775b-4cf7-8cd8-1af5df7a6aaf"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = 2, $CellContext`showSecant$$ = 
+    False, $CellContext`showSlopeTriangle$$ = True, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a$$], 1, "Point (x-value)"}, -0.5, 3, 0.1, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`showSlopeTriangle$$], True, "Show slope triangle"}, {
+      True, False}, ControlType -> Checkbox}, {{
+       Hold[$CellContext`showSecant$$], False, "Show secant line"}, {
+      True, False}, ControlType -> Checkbox}}, Typeset`size$$ = {
+    750., {299.50926775752873`, 308.10716814815373`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = 1, $CellContext`showSecant$$ = 
+        False, $CellContext`showSlopeTriangle$$ = True}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`derValue$, $CellContext`tangentLineEq$, \
+$CellContext`secantLineEq$, $CellContext`h$}, $CellContext`f[
+           Pattern[$CellContext`x, 
+            Blank[]]] := $CellContext`x^3 - 2 $CellContext`x^2 + 
+          2; $CellContext`fPrime[
+           Pattern[$CellContext`x, 
+            Blank[]]] := 
+         3 $CellContext`x^2 - 4 $CellContext`x; $CellContext`tangentLine[
+           Pattern[$CellContext`x, 
+            Blank[]], 
+           Pattern[$CellContext`a, 
+            
+            Blank[]]] := $CellContext`fPrime[$CellContext`a] $CellContext`x + \
+($CellContext`f[$CellContext`a] - $CellContext`fPrime[$CellContext`a] \
+$CellContext`a); $CellContext`derValue$ = \
+$CellContext`fPrime[$CellContext`a$$]; $CellContext`tangentLineEq$ = \
+$CellContext`tangentLine[$CellContext`x, $CellContext`a$$]; $CellContext`h$ = 
+         0.5; $CellContext`secantLineEq$ = (($CellContext`f[$CellContext`a$$ + \
+$CellContext`h$] - $CellContext`f[$CellContext`a$$])/$CellContext`h$) \
+($CellContext`x - $CellContext`a$$) + $CellContext`f[$CellContext`a$$]; 
+        Column[{
+           Style["Derivative as the Slope of the Tangent Line", Bold, 16], 
+           Plot[{
+             $CellContext`f[$CellContext`x], $CellContext`tangentLineEq$, 
+             
+             If[$CellContext`showSecant$$, $CellContext`secantLineEq$, 
+              None]}, {$CellContext`x, -1, 4}, 
+            PlotRange -> {{-1, 4}, {-2, 15}}, PlotStyle -> {
+              Darker[Blue, 0.2], Red, Dashed}, Epilog -> {
+              PointSize[0.02], Red, 
+              Point[{$CellContext`a$$, 
+                $CellContext`f[$CellContext`a$$]}], 
+              If[$CellContext`showSlopeTriangle$$, {
+                Darker[Green, 0.3], 
+                Thickness[0.004], 
+                Line[{{$CellContext`a$$, 
+                   $CellContext`f[$CellContext`a$$]}, {$CellContext`a$$ + 1, 
+                   $CellContext`f[$CellContext`a$$]}}], 
+                Line[{{$CellContext`a$$ + 1, 
+                   $CellContext`f[$CellContext`a$$]}, {$CellContext`a$$ + 
+                   1, $CellContext`f[$CellContext`a$$] + \
+$CellContext`derValue$}}], 
+                Line[{{$CellContext`a$$, 
+                   $CellContext`f[$CellContext`a$$]}, {$CellContext`a$$ + 
+                   1, $CellContext`f[$CellContext`a$$] + \
+$CellContext`derValue$}}], 
+                Text[
+                 Style["Slope = " <> ToString[
+                    NumberForm[$CellContext`derValue$, {4, 2}]], Bold, 12, 
+                  Darker[Green, 0.5]], {$CellContext`a$$ + 
+                  0.5, $CellContext`f[$CellContext`a$$] + \
+$CellContext`derValue$/2 + 0.5}]}, {}], 
+              If[$CellContext`showSecant$$, {Orange, 
+                PointSize[0.015], 
+                Point[{$CellContext`a$$ + $CellContext`h$, 
+                  $CellContext`f[$CellContext`a$$ + $CellContext`h$]}], 
+                Dashed, 
+                Line[{{$CellContext`a$$, 
+                   $CellContext`f[$CellContext`a$$]}, {$CellContext`a$$ + \
+$CellContext`h$, 
+                   $CellContext`f[$CellContext`a$$ + $CellContext`h$]}}]}, \
+{}]}, PlotLabels -> {"f(x) = x\.b3 - 2x\.b2 + 2", "Tangent Line", 
+              If[$CellContext`showSecant$$, "Secant Line", None]}, ImageSize -> 
+            500], 
+           Panel[
+            Grid[{{"Point", 
+               Row[{"x = ", 
+                 NumberForm[$CellContext`a$$, {4, 2}]}], 
+               Row[{"f(", 
+                 NumberForm[$CellContext`a$$, {4, 2}], ") = ", 
+                 NumberForm[
+                  $CellContext`f[$CellContext`a$$], {4, 2}]}]}, {"Derivative", 
+               Row[{"f'(", 
+                 NumberForm[$CellContext`a$$, {4, 2}], ") = ", 
+                 NumberForm[$CellContext`derValue$, {4, 2}]}], ""}, {
+              "Tangent Line Equation", 
+               Row[{"y = ", 
+                 NumberForm[
+                  $CellContext`fPrime[$CellContext`a$$], {4, 2}], "(x - ", 
+                 NumberForm[$CellContext`a$$, {4, 2}], ") + ", 
+                 NumberForm[
+                  $CellContext`f[$CellContext`a$$], {4, 2}]}], ""}}, 
+             Alignment -> Left, Dividers -> All], ImageSize -> 500], 
+           Panel[
+            Column[{
+              Style["Explanation:", Bold, 14], 
+              "\[Bullet] The derivative of a function at a point equals the \
+slope of the tangent line at that point.", 
+              "\[Bullet] As you move the slider, observe how the tangent \
+line's inclination changes.", 
+              "\[Bullet] The slope triangle (when enabled) shows rise/run = \
+f'(a).", 
+              
+              If[$CellContext`showSecant$$, 
+               "\[Bullet] The secant line approaches the tangent line as the \
+distance between points decreases.", ""]}, Alignment -> Left], ImageSize -> 
+            500]}]], 
+      "Specifications" :> {{{$CellContext`a$$, 1, "Point (x-value)"}, -0.5, 3,
+          0.1, Appearance -> 
+         "Labeled"}, {{$CellContext`showSlopeTriangle$$, True, 
+          "Show slope triangle"}, {
+         True, False}}, {{$CellContext`showSecant$$, False, 
+          "Show secant line"}, {True, False}}}, 
+      "Options" :> {ControlPlacement -> Bottom}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      819.6500000000001, {392.41490588008736`, 401.01280627071236`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.952405022393382*^9, 3.97004048248482*^9, 
+  3.97004063086407*^9},
+ CellLabel->
+  "Out[193]=",ExpressionUUID->"2d71abbb-1d56-4b06-a4d9-f5a6233ff874"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"f", "[", "1.8", "]"}]], "Input",
+ CellChangeTimes->{{3.951214270052878*^9, 3.951214285384042*^9}},
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"a3b8d936-8676-4ffb-86b6-fbd81f230637"],
+
+Cell[BoxData["1.3520000000000003`"], "Output",
+ CellChangeTimes->{{3.951214270488586*^9, 3.951214285704898*^9}},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"55484645-5bac-4cc5-95de-95f74ee4ed93"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "[", "x_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"3", 
+     RowBox[{"x", "^", "2"}]}], "-", 
+    RowBox[{"4", "x"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.951214233538229*^9, 3.9512142556078663`*^9}},
+ CellLabel->"In[99]:=",ExpressionUUID->"7a7e8189-b6fd-452d-b6ec-19447631e03a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"g", "[", "1.8", "]"}]], "Input",
+ CellChangeTimes->{{3.951214257065565*^9, 3.951214258934627*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"23599e90-2f82-461f-a181-350c949c0523"],
+
+Cell[BoxData["2.5200000000000005`"], "Output",
+ CellChangeTimes->{3.951214259227013*^9},
+ CellLabel->
+  "Out[100]=",ExpressionUUID->"469c1ee9-ae80-439b-a119-f214d7c58292"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"1.352", "==", 
+    RowBox[{
+     RowBox[{"2.52", "*", "1.8"}], "+", "c"}]}], ",", "c"}], "]"}]], "Input",
+ CellChangeTimes->{{3.951214307907446*^9, 3.951214328467616*^9}},
+ CellLabel->
+  "In[104]:=",ExpressionUUID->"c20f5233-8430-4a96-b7fd-7a0185d4c0a1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"c", "\[Rule]", 
+    RowBox[{"-", "3.184`"}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.951214328889851*^9},
+ CellLabel->
+  "Out[104]=",ExpressionUUID->"c3cf0391-a82f-461b-90e8-3855c11da725"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"y", "==", 
+  RowBox[{
+   RowBox[{"2.52", "x"}], "+", 
+   RowBox[{"-", "3.184"}]}]}]], "Input",
+ CellChangeTimes->{{3.951214344402977*^9, 3.951214384882646*^9}},
+ CellLabel->
+  "In[107]:=",ExpressionUUID->"e8dceed4-2ab2-4ea3-8480-8d603256bfac"],
+
+Cell[BoxData[
+ RowBox[{"y", "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", "3.184`"}], "+", 
+   RowBox[{"2.52`", " ", "x"}]}]}]], "Output",
+ CellChangeTimes->{{3.9512143555490437`*^9, 3.951214385236546*^9}},
+ CellLabel->
+  "Out[107]=",ExpressionUUID->"ff66c22a-85f2-4d19-a3cb-7e6b77136bb0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{"y", "==", 
+   RowBox[{
+    RowBox[{"2.52", 
+     RowBox[{"(", 
+      RowBox[{"x", "-", "1.8"}], ")"}]}], "+", "1.35"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9512143573398733`*^9, 3.9512143725818367`*^9}},
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"66194cce-d82f-460b-b047-45c836f587d1"],
+
+Cell[BoxData[
+ RowBox[{"y", "\[Equal]", 
+  RowBox[{
+   RowBox[{"-", "3.1860000000000004`"}], "+", 
+   RowBox[{"2.52`", " ", "x"}]}]}]], "Output",
+ CellChangeTimes->{3.951214373035253*^9},
+ CellLabel->
+  "Out[106]=",ExpressionUUID->"11ea6e7b-f9e1-4d98-9737-d48cc25eceee"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1512, 840},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"080bbefa-22b6-4be5-85ce-5f94f9a988f9"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 178, 3, 99, "Section",ExpressionUUID->"113ddbf7-c8b2-4d0e-a0fb-8c810c00b31f"],
+Cell[CellGroupData[{
+Cell[779, 29, 12637, 291, 1147, "Input",ExpressionUUID->"f9b3976e-ceed-459e-b35a-0185af6da951"],
+Cell[13419, 322, 6321, 127, 818, "Output",ExpressionUUID->"632d923f-5445-4966-b2df-c04134aaa148"]
+}, Open  ]],
+Cell[19755, 452, 333, 7, 44, "Input",ExpressionUUID->"f746e0d8-838b-465f-88fa-2ea8c90aab02"],
+Cell[CellGroupData[{
+Cell[20113, 463, 266, 6, 44, "Input",ExpressionUUID->"29a82c06-71d2-498a-a39c-fb8e175ffa5b"],
+Cell[20382, 471, 167, 2, 50, "Output",ExpressionUUID->"19f27d4b-693d-4560-bf16-735879474551"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20598, 479, 172, 3, 99, "Section",ExpressionUUID->"e64baa38-fdd7-4bf7-97d2-d4db44546d96"],
+Cell[CellGroupData[{
+Cell[20795, 486, 16903, 407, 1422, "Input",ExpressionUUID->"1cfea0df-775b-4cf7-8cd8-1af5df7a6aaf"],
+Cell[37701, 895, 7400, 147, 818, "Output",ExpressionUUID->"2d71abbb-1d56-4b06-a4d9-f5a6233ff874"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45138, 1047, 205, 4, 44, "Input",ExpressionUUID->"a3b8d936-8676-4ffb-86b6-fbd81f230637"],
+Cell[45346, 1053, 195, 3, 50, "Output",ExpressionUUID->"55484645-5bac-4cc5-95de-95f74ee4ed93"]
+}, Open  ]],
+Cell[45556, 1059, 335, 9, 44, "Input",ExpressionUUID->"7a7e8189-b6fd-452d-b6ec-19447631e03a"],
+Cell[CellGroupData[{
+Cell[45916, 1072, 205, 4, 44, "Input",ExpressionUUID->"23599e90-2f82-461f-a181-350c949c0523"],
+Cell[46124, 1078, 171, 3, 50, "Output",ExpressionUUID->"469c1ee9-ae80-439b-a119-f214d7c58292"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46332, 1086, 315, 8, 44, "Input",ExpressionUUID->"c20f5233-8430-4a96-b7fd-7a0185d4c0a1"],
+Cell[46650, 1096, 253, 7, 50, "Output",ExpressionUUID->"c3cf0391-a82f-461b-90e8-3855c11da725"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46940, 1108, 267, 7, 44, "Input",ExpressionUUID->"e8dceed4-2ab2-4ea3-8480-8d603256bfac"],
+Cell[47210, 1117, 283, 7, 50, "Output",ExpressionUUID->"ff66c22a-85f2-4d19-a3cb-7e6b77136bb0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47530, 1129, 343, 9, 44, "Input",ExpressionUUID->"66194cce-d82f-460b-b047-45c836f587d1"],
+Cell[47876, 1140, 270, 7, 50, "Output",ExpressionUUID->"11ea6e7b-f9e1-4d98-9737-d48cc25eceee"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
