@@ -1,0 +1,1004 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     41739,        994]
+NotebookOptionsPosition[     41039,        973]
+NotebookOutlinePosition[     41429,        989]
+CellTagsIndexPosition[     41386,        986]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cosine Rule", "Section",
+ CellChangeTimes->{{3.951636196536593*^9, 
+  3.951636198203232*^9}},ExpressionUUID->"907f4791-2bd6-4132-b394-\
+fa2f6598ad82"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Minimal", " ", "Working", " ", "Triangle", " ", "Solver", " ", "for", " ",
+     "Cloud", " ", "Deployment"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Core", " ", "Triangle", " ", "Solving", " ", "Function"}], "-", 
+    RowBox[{"Exactly", " ", "as", " ", "in", " ", "original", " ", "code"}]}],
+    "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"CosineRuleTriangleSolver", "[", "input_Association", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b", ",", "c", ",", "A", ",", "B", ",", "C", ",", 
+         RowBox[{"result", "=", "input"}]}], "}"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{"Extract", " ", "known", " ", "values"}], "*)"}], 
+       RowBox[{
+        RowBox[{"a", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<a\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"b", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<b\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"c", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<c\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"A", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<A\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"B", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<B\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"C", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"input", ",", "\"\<C\>\"", ",", "Null"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Case", ":", 
+          RowBox[{"Three", " ", "sides", " ", "known"}]}], "*)"}], 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"a", "=!=", "Null"}], "&&", 
+           RowBox[{"b", "=!=", "Null"}], "&&", 
+           RowBox[{"c", "=!=", "Null"}]}], ",", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"a", "+", "b"}], "<=", "c"}], "||", 
+              RowBox[{
+               RowBox[{"a", "+", "c"}], "<=", "b"}], "||", 
+              RowBox[{
+               RowBox[{"b", "+", "c"}], "<=", "a"}]}], ",", 
+             RowBox[{
+             "Return", 
+              "[", "\"\<Invalid triangle: Triangle inequality violated.\>\"", 
+              "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"A", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"b", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"a", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "b", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"B", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"b", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"C", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"b", "^", "2"}], "-", 
+                  RowBox[{"c", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "b"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<A\>\"", "->", "A"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<B\>\"", "->", "B"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<C\>\"", "->", "C"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Case", ":", 
+          RowBox[{
+          "Two", " ", "sides", " ", "and", " ", "the", " ", "included", " ", 
+           "angle"}]}], "*)"}], 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"a", "=!=", "Null"}], "&&", 
+           RowBox[{"b", "=!=", "Null"}], "&&", 
+           RowBox[{"C", "=!=", "Null"}]}], ",", 
+          RowBox[{
+           RowBox[{"c", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"Sqrt", "[", 
+              RowBox[{
+               RowBox[{"a", "^", "2"}], "+", 
+               RowBox[{"b", "^", "2"}], "-", 
+               RowBox[{"2", "*", "a", "*", "b", "*", 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"C", "*", 
+                  RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{"A", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"b", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"a", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "b", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"B", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"b", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<c\>\"", "->", "c"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<A\>\"", "->", "A"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<B\>\"", "->", "B"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"a", "=!=", "Null"}], "&&", 
+           RowBox[{"c", "=!=", "Null"}], "&&", 
+           RowBox[{"B", "=!=", "Null"}]}], ",", 
+          RowBox[{
+           RowBox[{"b", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"Sqrt", "[", 
+              RowBox[{
+               RowBox[{"a", "^", "2"}], "+", 
+               RowBox[{"c", "^", "2"}], "-", 
+               RowBox[{"2", "*", "a", "*", "c", "*", 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"B", "*", 
+                  RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{"A", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"b", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"a", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "b", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"C", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"b", "^", "2"}], "-", 
+                  RowBox[{"c", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "b"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<b\>\"", "->", "b"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<A\>\"", "->", "A"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<C\>\"", "->", "C"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"b", "=!=", "Null"}], "&&", 
+           RowBox[{"c", "=!=", "Null"}], "&&", 
+           RowBox[{"A", "=!=", "Null"}]}], ",", 
+          RowBox[{
+           RowBox[{"a", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"Sqrt", "[", 
+              RowBox[{
+               RowBox[{"b", "^", "2"}], "+", 
+               RowBox[{"c", "^", "2"}], "-", 
+               RowBox[{"2", "*", "b", "*", "c", "*", 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"A", "*", 
+                  RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{"B", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"c", "^", "2"}], "-", 
+                  RowBox[{"b", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "c"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"C", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"ArcCos", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"a", "^", "2"}], "+", 
+                  RowBox[{"b", "^", "2"}], "-", 
+                  RowBox[{"c", "^", "2"}]}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"2", "*", "a", "*", "b"}], ")"}]}], "]"}], "*", 
+              RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<a\>\"", "->", "a"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<B\>\"", "->", "B"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<C\>\"", "->", "C"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Case", ":", 
+          RowBox[{
+          "Two", " ", "sides", " ", "and", " ", "the", " ", "opposite", " ", 
+           "angle", " ", 
+           RowBox[{"(", 
+            RowBox[{"ambiguous", " ", "case"}], ")"}]}]}], "*)"}], 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"a", "=!=", "Null"}], "&&", 
+           RowBox[{"b", "=!=", "Null"}], "&&", 
+           RowBox[{"A", "=!=", "Null"}]}], ",", 
+          RowBox[{"Module", "[", 
+           RowBox[{
+            RowBox[{"{", "sinB", "}"}], ",", 
+            RowBox[{
+             RowBox[{"sinB", "=", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"b", "*", 
+                 RowBox[{"Sin", "[", 
+                  RowBox[{"A", "*", 
+                   RowBox[{"Pi", "/", "180"}]}], "]"}]}], ")"}], "/", "a"}]}],
+              ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"sinB", ">", "1"}], ",", 
+               RowBox[{
+               "Return", 
+                "[", "\"\<No solution: The given values do not form a valid \
+triangle.\>\"", "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"sinB", "==", "1"}], ",", 
+               RowBox[{
+                RowBox[{"B", "=", "90"}], ";", "\[IndentingNewLine]", 
+                RowBox[{"C", "=", 
+                 RowBox[{"180", "-", "A", "-", "B"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"c", "=", 
+                 RowBox[{"N", "[", 
+                  RowBox[{"Sqrt", "[", 
+                   RowBox[{
+                    RowBox[{"a", "^", "2"}], "+", 
+                    RowBox[{"b", "^", "2"}], "-", 
+                    RowBox[{"2", "*", "a", "*", "b", "*", 
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"C", "*", 
+                    RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+                 "\[IndentingNewLine]", 
+                RowBox[{"result", "=", 
+                 RowBox[{"Append", "[", 
+                  RowBox[{"result", ",", 
+                   RowBox[{"\"\<B\>\"", "->", "B"}]}], "]"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"result", "=", 
+                 RowBox[{"Append", "[", 
+                  RowBox[{"result", ",", 
+                   RowBox[{"\"\<C\>\"", "->", "C"}]}], "]"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"result", "=", 
+                 RowBox[{"Append", "[", 
+                  RowBox[{"result", ",", 
+                   RowBox[{"\"\<c\>\"", "->", "c"}]}], "]"}]}], ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"sinB", "<", "1"}], ",", 
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                  "B1", ",", "C1", ",", "c1", ",", "B2", ",", "C2", ",", 
+                   "c2"}], "}"}], ",", 
+                 RowBox[{
+                  RowBox[{"B1", "=", 
+                   RowBox[{"N", "[", 
+                    RowBox[{
+                    RowBox[{"ArcSin", "[", "sinB", "]"}], "*", 
+                    RowBox[{"180", "/", "Pi"}]}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"C1", "=", 
+                   RowBox[{"180", "-", "A", "-", "B1"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"c1", "=", 
+                   RowBox[{"N", "[", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"a", "^", "2"}], "+", 
+                    RowBox[{"b", "^", "2"}], "-", 
+                    RowBox[{"2", "*", "a", "*", "b", "*", 
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"C1", "*", 
+                    RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{"B2", "=", 
+                   RowBox[{"180", "-", "B1"}]}], ";", "\[IndentingNewLine]", 
+                  RowBox[{"C2", "=", 
+                   RowBox[{"180", "-", "A", "-", "B2"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"c2", "=", 
+                   RowBox[{"N", "[", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"a", "^", "2"}], "+", 
+                    RowBox[{"b", "^", "2"}], "-", 
+                    RowBox[{"2", "*", "a", "*", "b", "*", 
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"C2", "*", 
+                    RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+                   "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"C2", ">", "0"}], ",", 
+                    RowBox[{
+                    RowBox[{"Return", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"<|", 
+                    RowBox[{
+                    RowBox[{"\"\<a\>\"", "->", "a"}], ",", 
+                    RowBox[{"\"\<b\>\"", "->", "b"}], ",", 
+                    RowBox[{"\"\<c\>\"", "->", "c1"}], ",", 
+                    RowBox[{"\"\<A\>\"", "->", "A"}], ",", 
+                    RowBox[{"\"\<B\>\"", "->", "B1"}], ",", 
+                    RowBox[{"\"\<C\>\"", "->", "C1"}]}], "|>"}], ",", 
+                    RowBox[{"<|", 
+                    RowBox[{
+                    RowBox[{"\"\<a\>\"", "->", "a"}], ",", 
+                    RowBox[{"\"\<b\>\"", "->", "b"}], ",", 
+                    RowBox[{"\"\<c\>\"", "->", "c2"}], ",", 
+                    RowBox[{"\"\<A\>\"", "->", "A"}], ",", 
+                    RowBox[{"\"\<B\>\"", "->", "B2"}], ",", 
+                    RowBox[{"\"\<C\>\"", "->", "C2"}]}], "|>"}]}], "}"}], 
+                    "]"}], ";"}], ",", 
+                    RowBox[{
+                    RowBox[{"result", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"result", ",", 
+                    RowBox[{"\"\<B\>\"", "->", "B1"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"result", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"result", ",", 
+                    RowBox[{"\"\<C\>\"", "->", "C1"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"result", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"result", ",", 
+                    RowBox[{"\"\<c\>\"", "->", "c1"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Return", "[", "result", "]"}]}]}], "]"}]}]}], 
+                "]"}]}], "]"}]}]}], "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Case", ":", 
+          RowBox[{"Isosceles", " ", "triangle"}]}], "*)"}], 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"a", "=!=", "Null"}], "&&", 
+           RowBox[{"c", "=!=", "Null"}], "&&", 
+           RowBox[{"B", "=!=", "Null"}], "&&", 
+           RowBox[{"a", "==", "c"}]}], ",", 
+          RowBox[{
+           RowBox[{"b", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"Sqrt", "[", 
+              RowBox[{
+               RowBox[{"a", "^", "2"}], "+", 
+               RowBox[{"c", "^", "2"}], "-", 
+               RowBox[{"2", "*", "a", "*", "c", "*", 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"B", "*", 
+                  RowBox[{"Pi", "/", "180"}]}], "]"}]}]}], "]"}], "]"}]}], ";",
+            "\[IndentingNewLine]", 
+           RowBox[{"A", "=", 
+            RowBox[{"C", "=", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"180", "-", "B"}], ")"}], "/", "2"}]}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<b\>\"", "->", "b"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<A\>\"", "->", "A"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"result", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"result", ",", 
+              RowBox[{"\"\<C\>\"", "->", "C"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "result", "]"}]}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"If", " ", "we", " ", "get", " ", "here"}], ",", 
+          RowBox[{"we", " ", 
+           RowBox[{"don", "'"}], "t", " ", "have", " ", "enough", " ", 
+           "information"}]}], "*)"}], 
+        RowBox[{
+        "Return", 
+         "[", "\"\<Insufficient information to solve the triangle.\>\"", 
+         "]"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"{", 
+    RowBox[{"\"\<a = \>\"", ",", 
+     RowBox[{"InputField", "[", 
+      RowBox[{
+       RowBox[{"Dynamic", "[", "a", "]"}], ",", "String", ",", 
+       RowBox[{"FieldSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"10", ",", "1"}], "}"}]}], ",", 
+       RowBox[{"Background", "->", "LightYellow"}], ","}], "]"}]}], "}"}], 
+   "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Create", " ", "a", " ", "simple", " ", "cloud"}], "-", 
+     RowBox[{"friendly", " ", "UI"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TriangleSolverCloudUI", "[", "]"}], ":=", 
+    RowBox[{"DynamicModule", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"a", "=", "\"\<\>\""}], ",", 
+        RowBox[{"b", "=", "\"\<\>\""}], ",", 
+        RowBox[{"c", "=", "\"\<\>\""}], ",", 
+        RowBox[{"A", "=", "\"\<\>\""}], ",", 
+        RowBox[{"B", "=", "\"\<\>\""}], ",", 
+        RowBox[{"C", "=", "\"\<\>\""}], ",", 
+        RowBox[{"angleUnit", "=", "\"\<degrees\>\""}], ",", 
+        RowBox[{"result", "=", "\"\<\>\""}], ",", 
+        RowBox[{"showResults", "=", "False"}]}], "}"}], ",", 
+      RowBox[{"Column", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"(*", "Header", "*)"}], 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<Cosine Rule\>\"", ",", "Bold", ",", "24", ",", 
+            "Blue"}], "]"}], ",", 
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<Enter any 3 values to solve the triangle\>\"", ",", 
+            "14"}], "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{"Input", " ", "Controls"}], "*)"}], 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<Angle input type: \>\"", ",", "Bold"}], "]"}], ",", 
+             RowBox[{"RadioButtonBar", "[", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", "angleUnit", "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"\"\<degrees\>\"", ",", "\"\<radians\>\""}], "}"}]}], 
+              "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"(*", "Inputs", "*)"}], 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Sides:\>\"", ",", "Bold", ",", "14"}], "]"}], ",",
+                 "SpanFromLeft"}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"\"\<a = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "a", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<b = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "b", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<c = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "c", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Angles:\>\"", ",", "Bold", ",", "14"}], "]"}], ",",
+                 "SpanFromLeft"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<A = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "A", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<B = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "B", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<C = \>\"", ",", 
+                RowBox[{"InputField", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "[", "C", "]"}], ",", "String", ",", 
+                  RowBox[{"FieldSize", "->", "10"}], ",", 
+                  RowBox[{"Background", "->", "LightYellow"}]}], "]"}]}], 
+               "}"}]}], "}"}], ",", 
+            RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<Hint: You can enter mixed numbers like 2+3/4\>\"", ",",
+             "Italic", ",", "12", ",", "Gray"}], "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{"Solve", " ", "Button"}], "*)"}], 
+          RowBox[{"Button", "[", 
+           RowBox[{"\"\<Cosine Rule\>\"", ",", 
+            RowBox[{"Module", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"input", "=", 
+                 RowBox[{"<|", "|>"}]}], ",", "val"}], "}"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{"Process", " ", "inputs"}], "*)"}], 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"a", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "a", "]"}]}], ";", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<a\>\"", "->", 
+                    RowBox[{"N", "[", "val", "]"}]}]}], "]"}]}], "]"}]}]}], 
+                "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"b", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "b", "]"}]}], ";", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<b\>\"", "->", 
+                    RowBox[{"N", "[", "val", "]"}]}]}], "]"}]}], "]"}]}]}], 
+                "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"c", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "c", "]"}]}], ";", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<c\>\"", "->", 
+                    RowBox[{"N", "[", "val", "]"}]}]}], "]"}]}], "]"}]}]}], 
+                "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"(*", 
+                RowBox[{
+                "Convert", " ", "angles", " ", "if", " ", "necessary"}], 
+                "*)"}], 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"A", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "A", "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<A\>\"", "->", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"angleUnit", "==", "\"\<radians\>\""}], ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{"val", "*", 
+                    RowBox[{"180", "/", "Pi"}]}], "]"}], ",", 
+                    RowBox[{"N", "[", "val", "]"}]}], "]"}]}]}], "]"}]}], 
+                   "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"B", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "B", "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<B\>\"", "->", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"angleUnit", "==", "\"\<radians\>\""}], ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{"val", "*", 
+                    RowBox[{"180", "/", "Pi"}]}], "]"}], ",", 
+                    RowBox[{"N", "[", "val", "]"}]}], "]"}]}]}], "]"}]}], 
+                   "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"C", "!=", "\"\<\>\""}], ",", 
+                 RowBox[{
+                  RowBox[{"val", "=", 
+                   RowBox[{"ToExpression", "[", "C", "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{"NumberQ", "[", "val", "]"}], ",", 
+                    RowBox[{"AppendTo", "[", 
+                    RowBox[{"input", ",", 
+                    RowBox[{"\"\<C\>\"", "->", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"angleUnit", "==", "\"\<radians\>\""}], ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{"val", "*", 
+                    RowBox[{"180", "/", "Pi"}]}], "]"}], ",", 
+                    RowBox[{"N", "[", "val", "]"}]}], "]"}]}]}], "]"}]}], 
+                   "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"(*", 
+                RowBox[{"Solve", " ", "the", " ", "triangle"}], "*)"}], 
+               RowBox[{"result", "=", 
+                RowBox[{"CosineRuleTriangleSolver", "[", "input", "]"}]}], ";",
+                "\[IndentingNewLine]", 
+               RowBox[{"showResults", "=", "True"}], ";"}]}], "]"}], ",", 
+            RowBox[{"Background", "->", "LightBlue"}], ",", 
+            RowBox[{"BaseStyle", "->", 
+             RowBox[{"{", 
+              RowBox[{"Bold", ",", "14"}], "}"}]}], ",", 
+            RowBox[{"ImageSize", "->", 
+             RowBox[{"{", 
+              RowBox[{"150", ",", "40"}], "}"}]}]}], "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{"Results", " ", "Section"}], "*)"}], 
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"If", "[", 
+            RowBox[{"showResults", ",", 
+             RowBox[{"Column", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 
+                 RowBox[{"\"\<Results:\>\"", ",", "Bold", ",", "18", ",", 
+                  "Blue"}], "]"}], ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"StringQ", "[", "result", "]"}], ",", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{"result", ",", "Bold", ",", "14", ",", "Red"}], 
+                   "]"}], ",", 
+                  RowBox[{"(*", 
+                   RowBox[{
+                   "Display", " ", "the", " ", "triangle", " ", "data"}], 
+                   "*)"}], 
+                  RowBox[{"Column", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"Grid", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    
+                    RowBox[{"\"\<Side\>\"", ",", "\"\<Value\>\"", 
+                    ",", "\"\<Angle\>\"", ",", "\"\<Value\>\""}], "}"}], ",", 
+                    
+                    RowBox[{"{", 
+                    RowBox[{"\"\<a\>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<a\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], ",", "\"\<A\>\"",
+                     ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<A\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], "]"}], 
+                    "<>", "\"\<\[Degree]\>\""}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<b\>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<b\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], ",", "\"\<B\>\"",
+                     ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<B\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], "]"}], 
+                    "<>", "\"\<\[Degree]\>\""}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<c\>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<c\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], ",", "\"\<C\>\"",
+                     ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"Lookup", "[", 
+                    RowBox[{"result", ",", "\"\<C\>\"", ",", "\"\<-\>\""}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}], "]"}], 
+                    "<>", "\"\<\[Degree]\>\""}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"Frame", "->", "All"}], ",", 
+                    RowBox[{"Background", "->", 
+                    RowBox[{"{", 
+                    RowBox[{"None", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"LightCyan", ",", "LightBlue"}], "}"}]}], 
+                    "}"}]}]}], "]"}], "}"}], "]"}]}], "]"}]}], "}"}], "]"}], ",", 
+             RowBox[{"(*", 
+              RowBox[{"No", " ", "results", " ", "yet"}], "*)"}], 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Enter at least 3 values and click 'Cosine \
+Rule'\>\"", ",", "Italic", ",", "14", ",", "Gray"}], "]"}]}], "]"}], "]"}]}], 
+         "}"}], ",", 
+        RowBox[{"Alignment", "->", "Center"}], ",", 
+        RowBox[{"Spacings", "->", "1"}]}], "]"}]}], "]"}]}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.951640823623131*^9, 3.951640871320211*^9}, {
+   3.9516409328089447`*^9, 3.951640950652869*^9}, {3.951641014899406*^9, 
+   3.951641028691063*^9}, {3.951641064016078*^9, 3.95164106513516*^9}, {
+   3.9516411148353786`*^9, 3.951641122089862*^9}, {3.951641395538795*^9, 
+   3.951641396423995*^9}, {3.951651496146607*^9, 3.951651509741082*^9}, {
+   3.9516515441312*^9, 3.951651569600198*^9}, 3.951651606407325*^9, {
+   3.951651668721768*^9, 3.9516517080491457`*^9}, {3.951651781672206*^9, 
+   3.951651843020288*^9}, {3.9516519261602488`*^9, 3.951651937884973*^9}, {
+   3.951652013577302*^9, 3.9516520786507483`*^9}, {3.9516591489174423`*^9, 
+   3.951659164524159*^9}, {3.9788530158524723`*^9, 
+   3.978853032894005*^9}},ExpressionUUID->"39721583-3b94-493a-8571-\
+0b4925aface8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CosineRuleTriangleSolver", "[", 
+  RowBox[{"<|", 
+   RowBox[{
+    RowBox[{"\"\<A\>\"", "->", "50"}], ",", 
+    RowBox[{"\"\<b\>\"", "->", "5"}], ",", 
+    RowBox[{"\"\<c\>\"", "->", "10"}]}], "|>"}], "]"}]], "Input",
+ CellChangeTimes->{{3.978853035356022*^9, 3.978853080933374*^9}, {
+  3.978853115510948*^9, 3.9788531174210243`*^9}},
+ CellLabel->
+  "In[766]:=",ExpressionUUID->"f7db5410-8093-40bf-8641-ca858a86d3d7"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"A\"\>", "\[Rule]", "50"}], ",", 
+   RowBox[{"\<\"b\"\>", "\[Rule]", "5"}], ",", 
+   RowBox[{"\<\"c\"\>", "\[Rule]", "10"}], ",", 
+   RowBox[{"\<\"a\"\>", "\[Rule]", "7.792383398636522`"}], ",", 
+   RowBox[{"\<\"B\"\>", "\[Rule]", "29.44146394258787`"}], ",", 
+   RowBox[{"\<\"C\"\>", "\[Rule]", "100.55853605741213`"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.9788531179834547`*^9},
+ CellLabel->
+  "Out[766]=",ExpressionUUID->"9d2f16ab-e87f-4bf1-ad9d-2f4d02457fd3"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 750},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a26c4a68-f464-485d-98fe-73d488fdb589"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 156, 3, 99, "Section",ExpressionUUID->"907f4791-2bd6-4132-b394-fa2f6598ad82"],
+Cell[735, 27, 39248, 914, 5436, "Input",ExpressionUUID->"39721583-3b94-493a-8571-0b4925aface8"],
+Cell[CellGroupData[{
+Cell[40008, 945, 440, 10, 44, "Input",ExpressionUUID->"f7db5410-8093-40bf-8641-ca858a86d3d7"],
+Cell[40451, 957, 560, 12, 80, "Output",ExpressionUUID->"9d2f16ab-e87f-4bf1-ad9d-2f4d02457fd3"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
