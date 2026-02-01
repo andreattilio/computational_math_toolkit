@@ -21,7 +21,7 @@ A library of interactive mathematical engines and visualization tools built in t
 
 ### 📊 Visualizations
 * **Calculus Explorer:** [📄 View PDF Preview](visualizations/calculus_explorer.pdf) | [💻 Download Notebook (.nb)](visualizations/calculus_explorer.nb)
-* **Stats Dashboard:** [📄 View PDF Preview](solvers/geometry_core.pdf) | [💻 Download Notebook (.nb)](solvers/geometry_core.nb)
+* **Stats Dashboard:** [📄 View PDF Preview](stats_dashboard.pdf) | [💻 Download Notebook (.nb)](stats_dashboard.nb)
 
 ---
 *Note: To run the `.nb` files interactively, you will need Wolfram Mathematica or the free Wolfram Player.*
